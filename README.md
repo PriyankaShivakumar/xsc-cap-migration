@@ -411,9 +411,18 @@ For a detailed list of the features supported by the SAP HANA Application Migrat
 3. Replace <password> with the password for the migration user.
 4. Replace <TARGET_SCHEMA_NAME> with the schema name of your target CAP application.
 5. Open the SQL Console in your source system, Copy the entire content of the <Project_Name>_DataMigration.sql file and Paste the copied content into the SQL Console.
-6. Click on the "Run" button to execute the script.
+6. Click on the "Execute" button to run the script.
+7. For each schema that you want to migrate,the owner of the schema or any user who has the permissions to grant the required privileges must execute the following statement:
+   	`GRANT SELECT ON SCHEMA "<SCHEMA_NAME>" TO <MIGRATION_USER>;`
 
-These steps will help you migrate the data from your source system to the target CAP application.
+Follow the [SAP HANA Self Service Migration Tool](https://help.sap.com/docs/hana-cloud/sap-hana-cloud-migration-guide/migrate-sap-hana-service-database-neo-to-sap-hana-cloud) steps will help you migrate the data from your source system to the target CAP application.
+
+#### **Note:** 
+```
+1. Prerequisites is already done by above <Project_Name>_DataMigration.sql, skip the Prerequisites of creating source migration user.
+2. Granting SAP_INTERNAL_HANA_SUPPORT TO migration user is only required when migrating SAP HANA databases in the Neo environment, please remove when migrating from on-premise SAP HANA databases
+3. Incase of issue with assigning SAP_INTERNAL_HANA_SUPPORT role to user please find NOTE: https://me.sap.com/notes/0002971325
+```
 
 ## Learning Resources
 1. [Prepare XS Classic Artifacts for Migration](https://help.sap.com/docs/SAP_HANA_PLATFORM/58d81eb4c9bc4899ba972c9fe7a1a115/a759b4815ae246649c83365cbcede79b.html).
