@@ -211,62 +211,61 @@ Once the project is created, there are some adjustments we need to make manually
     - In the `core-db/cds/data/MDViews.cds` file, alias needs to be modified. So ![Product_Id] and ![Product_Name] or ![ProductName] should be changed to PRODUCTID and PRODUCTNAME respectively as they are defined like this in the entity definations. You can refer the log file in the logs folder for the line number for these changes.
     - In the `core-db/cds/src/models/SAP_HANA_DEMOCONTENT_EPM_MODELS_SUPPLIER.cds` file, add `String(3)` after the semicolon.
     - In the `core-db/src/procedures/get_products_by_id.hdbprocedure` file, replace `NCLOB` by `TEXT` in two places.
-    - Replace the code in the mta.yaml with the below code.
+    - Replace the code in the mta.yaml with the below code. Replace <Project Name> with the name of your project.
    
       ```
-      	    _schema-version: 3.3.0
-	    ID: Test
-version: 1.0.0
-description: A migrated CAP Project.
-parameters:
-  enable-parallel-deployments: true
-build-parameters:
-  before-all:
-    - builder: custom
-      commands:
-        - npm ci
-        - npx cds build --production
-modules:
-  - name: Test-deployer0
-    type: hdb
-    path: gen/core-db
-    deployed-after:
-      - Test-deployer1
-    parameters:
-      buildpack: nodejs_buildpack
-    requires:
-      - name: Test-db0
-        properties:
-          TARGET_CONTAINER: ~{hdi-container-name}
-      - name: Test-db1
-        group: SERVICE_REPLACEMENTS
-        properties:
-          key: hdi-user-service
-          service: ~{user-container-name}
-  - name: Test-deployer1
-    type: hdb
-    path: gen/user-db
-    parameters:
-      buildpack: nodejs_buildpack
-    requires:
-      - name: Test-db1
-resources:
-  - name: Test-db0
-    type: com.sap.xs.hdi-container
-    parameters:
-      service: hana
-      service-plan: hdi-shared
-    properties:
-      hdi-container-name: ${service-name}
-  - name: Test-db1
-    type: com.sap.xs.hdi-container
-    parameters:
-      service: hana
-      service-plan: hdi-shared
-      service-name: Test-db1
-    properties:
-      user-container-name: ${service-name}
-
+      _schema-version: 3.3.0
+      ID: <Project Name>
+      version: 1.0.0
+      description: A migrated CAP Project.
+      parameters:
+        enable-parallel-deployments: true
+      build-parameters:
+        before-all:
+          - builder: custom
+            commands:
+              - npm ci
+              - npx cds build --production
+      modules:
+        - name: <Project Name>-deployer0
+          type: hdb
+          path: gen/core-db
+          deployed-after:
+            - <Project Name>-deployer1
+          parameters:
+            buildpack: nodejs_buildpack
+          requires:
+            - name: <Project Name>-db0
+              properties:
+                TARGET_CONTAINER: ~{hdi-container-name}
+            - name: <Project Name>-db1
+              group: SERVICE_REPLACEMENTS
+              properties:
+                key: hdi-user-service
+                service: ~{user-container-name}
+        - name: <Project Name>-deployer1
+          type: hdb
+          path: gen/user-db
+          parameters:
+            buildpack: nodejs_buildpack
+          requires:
+            - name: <Project Name>-db1
+      resources:
+        - name: <Project Name>-db0
+          type: com.sap.xs.hdi-container
+          parameters:
+            service: hana
+            service-plan: hdi-shared
+          properties:
+            hdi-container-name: ${service-name}
+        - name: <Project Name>-db1
+          type: com.sap.xs.hdi-container
+          parameters:
+            service: hana
+            service-plan: hdi-shared
+            service-name: Test-db1
+          properties:
+            user-container-name: ${service-name}
       ```
  2. Currently, changes to Flowgraph, Reptask, and Replication artifacts are not covered. You will need to modify these manually. Unsupported types and functions in the calculation view such as "CE_FUNCTION", "CACHE", etc., need to be noted. Please refer to the [HANA Cloud Documentation](https://help.sap.com/docs/hana-cloud/sap-hana-cloud-overview-guide/sap-hana-cloud-overview-guide) for more details on how to handle these.
     
