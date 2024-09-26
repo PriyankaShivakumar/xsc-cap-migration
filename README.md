@@ -210,7 +210,6 @@ Once the project is created, there are some adjustments we need to make manually
     - Delete `synonyms/sys_rt.hdbsynonym` from core-db/src folder.
     - In the `core-db/cds/data/MDViews.cds` file, alias needs to be modified. So ![Product_Id] and ![Product_Name] or ![ProductName] should be changed to PRODUCTID and PRODUCTNAME respectively as they are defined like this in the entity definations. You can refer the log file in the logs folder for the line number for these changes.
     - In the `core-db/cds/src/models/SAP_HANA_DEMOCONTENT_EPM_MODELS_SUPPLIER.cds` file, add `String(3)` after the semicolon.
-    - In the `core-db/src/procedures/get_products_by_id.hdbprocedure` file, replace `NCLOB` by `TEXT` in two places.
     - Replace the code in the mta.yaml with the below code. Replace <Project Name> with the name of your project.
    
       ```
