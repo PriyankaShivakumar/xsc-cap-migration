@@ -1,4 +1,4 @@
-# Migration of SAP HANA XS Advanced To SAP Cloud Application Programming Model Using SAP HANA Application Migration Assistant
+![Screenshot 2024-10-03 151235](https://github.com/user-attachments/assets/49cb8227-555f-4100-9f26-05a193f52a42)# Migration of SAP HANA XS Advanced To SAP Cloud Application Programming Model Using SAP HANA Application Migration Assistant
 
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/xsc-cap-migration)](https://api.reuse.software/info/github.com/SAP-samples/xsc-cap-migration)
 
@@ -351,23 +351,25 @@ Once the necessary privileges are assigned, follow the below steps:
 4. Enter the user credentials for the SAP HANA Database Migration User – username and password – into their respective fields. Hit the login button to authorize these credentials
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/6dfd6bec-d030-4dc7-96d7-eb687fe862c5" width="600" height="400">
+<img src="https://github.com/user-attachments/assets/7ceb71f7-efd9-4f8b-bdeb-e5d40cdd9cdd" width="600" height="400">
 </p>
+
 
 5. To proceed, click on the next button
 
 6. In the Data Migration Configuration Page of the wizard, select the Data migration configuration sql file from the drop down menu, which would have been created as part of your migrated projects.
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/593d19f8-2c26-496d-9d86-257055f82e6f" width="600" height="400">
+<img src="https://github.com/user-attachments/assets/efbdfddb-8dc8-4d79-a3bb-e941dfe016c9" width="600" height="400">
 </p>
+
 
 7. Enter the Hana cloud target schema in the next field
 
 8. In the next field as shown below, enter the data migration user name which was created earlier and for which the necessary privileges were granted. Make sure the user already exists else a error message will be thrown to create the user and assign necessary privileges
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/352b67cb-5cd0-4a88-9580-f17a6b1e32d3" width="600" height="400">
+<img src="https://github.com/user-attachments/assets/9d82e310-8827-4653-bce5-ef2bf6f1405e" width="600" height="400">
 </p>
 
 9. Click on the finish button.
